@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Asset Allocation Models - Robo-Advisory</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="models.html" class="active">Models</a></li>
+        <li><a href="simulator.html">Simulator</a></li>
+        <li><a href="discovery.html">Discovery</a></li>
+        <li><a href="references.html">References</a></li>
+      </ul>
+    </nav>
+
+    <header>
+      <h1>CS1102 - Course Project - 2025/2026 Semester B</h1>
+      <h2>Robo-Advisory: Asset Allocation Methodologies</h2>
+      <div class="group-info">
+        <p><strong>Team Members:</strong> LI Junle, XU Hongyu, YU Zening</p>
+      </div>
+    </header>
+
+    <main>
+      <section>
+        <h2>Understanding Portfolio Construction</h2>
+        <p>
+          The core engine of any robo-advisory system is its portfolio construction algorithm. These algorithms are responsible for translating a user's risk profile into a specific combination of financial assets. In this section, we compare three distinct asset allocation methodologies in terms of their return and volatility characteristics.
+        </p>
+      </section>
+
+      <section>
+        <h2>1. Equal Weighting (1/N)</h2>
+        <p>
+          The Equal Weighting strategy is the simplest form of diversification. It assigns the exact same capital allocation to every asset in the portfolio, regardless of the asset's historical performance, volatility, or correlation with other assets.
+        </p>
+        <ul>
+          <li><strong>Strengths:</strong> Highly intuitive, easy to implement, and requires no complex forecasting or historical data analysis.</li>
+          <li><strong>Weaknesses:</strong> It ignores the varying risk levels of different assets. For instance, an equal allocation to highly volatile stocks and stable bonds will result in an equity-dominated risk profile.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>2. Risk Parity</h2>
+        <p>
+          Unlike Equal Weighting, the Risk Parity approach focuses on the allocation of <em>risk</em> rather than capital. The goal is to ensure that each asset class contributes equally to the overall volatility of the portfolio.
+        </p>
+        <ul>
+          <li><strong>Strengths:</strong> It provides true diversification, performing more steadily across different economic environments (e.g., inflation vs. deflation).</li>
+          <li><strong>Weaknesses:</strong> It often requires the use of leverage to achieve targeted return levels, as a significant portion of capital must be allocated to low-risk, low-return assets like government bonds.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>3. Simplified Mean-Variance Model</h2>
+        <p>
+          Rooted in Modern Portfolio Theory (MPT), this model seeks to identify the optimal portfolio that offers the maximum expected return for a given level of risk, forming the "Efficient Frontier."
+        </p>
+        <ul>
+          <li><strong>Strengths:</strong> It mathematically optimizes the trade-off between risk and reward by factoring in the correlation between different assets.</li>
+          <li><strong>Weaknesses:</strong> It is highly sensitive to input parameters. Small errors in forecasting expected returns or covariance can lead to heavily skewed and impractical asset allocations.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>The Impact of Real-World Constraints</h2>
+        <p>
+          While theoretical models perform flawlessly in simulations, robo-advisory systems must account for practical market frictions. We examine how real-world constraints affect strategy outcomes:
+        </p>
+        <ul>
+          <li><strong>Transaction Costs:</strong> Frequent buying and selling erode portfolio returns. Algorithms must balance the need for optimal allocation with the costs of trading.</li>
+          <li><strong>Rebalancing Frequency:</strong> Markets drift daily. Robo-advisors must determine optimal rebalancing schedules (e.g., time-based or threshold-based) to maintain the target risk profile without incurring excessive fees.</li>
+          <li><strong>Asset Availability:</strong> Retail investors often face limitations in acquiring certain institutional-grade assets or derivatives, requiring robo-advisors to construct proxy portfolios using highly liquid ETFs.</li>
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      <p>CS1102 - Course Project - 2025/2026 Semester B | Team: LI Junle, XU Hongyu, YU Zening</p>
+    </footer>
+  </body>
+</html>

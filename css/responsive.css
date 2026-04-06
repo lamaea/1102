@@ -1,12 +1,23 @@
 /* =============================================================================
-   Responsive breakpoints — stack layout on small screens, widen metrics grid.
+   Responsive — course nav + simulator dashboard
    ============================================================================= */
 
-@media (min-width: 640px) {
-  .results-layout {
-    grid-template-columns: 1fr 1.1fr;
+@media (max-width: 900px) {
+  header,
+  main {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    padding: 40px 28px;
   }
 
+  body.page-simulator header,
+  body.page-simulator main {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+}
+
+@media (min-width: 640px) {
   .btn-primary {
     width: auto;
     min-width: 240px;
@@ -19,35 +30,30 @@
 }
 
 @media (min-width: 900px) {
-  .main-content {
+  .simulator-dashboard {
     flex-direction: row;
     align-items: flex-start;
   }
 
-  .questionnaire-card {
+  .simulator-dashboard .questionnaire-card {
     flex: 1;
     min-width: 0;
     max-width: 520px;
   }
 
-  .results-card {
+  .simulator-dashboard .results-card {
     flex: 1.15;
     min-width: 0;
   }
 }
 
 @media (max-width: 599px) {
-  .site-header {
+  nav ul {
+    gap: 0.75rem 1.25rem;
+  }
+
+  .metrics-row {
     flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .metric-list {
-    grid-template-columns: 1fr;
-  }
-
-  .metric--full {
-    grid-column: 1;
   }
 }
 
@@ -56,8 +62,13 @@
     scroll-behavior: auto;
   }
 
+  main section,
   .btn-primary,
   .range-input::-webkit-slider-thumb {
     transition: none;
+  }
+
+  main section:hover {
+    transform: none;
   }
 }

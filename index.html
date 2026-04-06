@@ -1,174 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Academic Robo-Advisory — portfolio construction and risk profiling" />
-  <title>RoboAdvisor — Portfolio & Risk Profile</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/responsive.css" />
-</head>
-<body>
-  <div class="page-bg" aria-hidden="true"></div>
-
-  <header class="site-header">
-    <div class="brand">
-      <span class="brand-mark" aria-hidden="true"></span>
-      <div>
-        <h1 class="brand-title">RoboAdvisor</h1>
-        <p class="brand-tagline">Academic portfolio construction &amp; risk profiling</p>
-      </div>
-    </div>
-    <nav class="header-nav" aria-label="Section">
-      <a href="#questionnaire" class="nav-link">Questionnaire</a>
-      <a href="#results" class="nav-link">Allocation</a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CS1102 Project - Robo-Advisory</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="models.html">Models</a></li>
+        <li><a href="simulator.html">Simulator</a></li>
+        <li><a href="discovery.html">Discovery</a></li>
+        <li><a href="references.html">References</a></li>
+      </ul>
     </nav>
-  </header>
 
-  <main class="main-content">
-    <section id="questionnaire" class="card questionnaire-card">
-      <div class="card-header">
-        <h2>Investor questionnaire</h2>
-        <p class="card-lead">Adjust the sliders and select a goal. Values update live as you move each control.</p>
+    <header>
+      <h1>CS1102 - Course Project - 2025/2026 Semester B</h1>
+      <h2>Topic: Robo-Advisory: Portfolio Construction and Risk Profiling</h2>
+
+      <div class="group-info">
+        <h3>Group Members:</h3>
+        <ul>
+          <li>LI Junle (Student ID: [59303042])</li>
+          <li>XU Hongyu (Student ID: [58712884])</li>
+          <li>YU Zening (Student ID: [60180796])</li>
+        </ul>
       </div>
 
-      <form id="profile-form" class="profile-form" novalidate>
-        <!-- Age: range slider with live readout -->
-        <div class="form-group">
-          <div class="form-row">
-            <label for="age" class="form-label">Age</label>
-            <span class="value-badge" id="age-output" aria-live="polite">35</span>
-          </div>
-          <input
-            type="range"
-            id="age"
-            name="age"
-            class="range-input"
-            min="18"
-            max="85"
-            value="35"
-            step="1"
-            aria-valuemin="18"
-            aria-valuemax="85"
-            aria-valuenow="35"
-            aria-describedby="age-hint"
-          />
-          <p id="age-hint" class="field-hint">Your current age drives capacity for volatility over the remaining life cycle.</p>
-        </div>
-
-        <!-- Investment horizon (years) -->
-        <div class="form-group">
-          <div class="form-row">
-            <label for="horizon" class="form-label">Investment horizon (years)</label>
-            <span class="value-badge" id="horizon-output" aria-live="polite">10</span>
-          </div>
-          <input
-            type="range"
-            id="horizon"
-            name="horizon"
-            class="range-input"
-            min="1"
-            max="40"
-            value="10"
-            step="1"
-            aria-valuemin="1"
-            aria-valuemax="40"
-            aria-valuenow="10"
-            aria-describedby="horizon-hint"
-          />
-          <p id="horizon-hint" class="field-hint">Short horizons are heavily penalized in our risk model even if stated risk tolerance is high.</p>
-        </div>
-
-        <!-- Risk tolerance 1–10 -->
-        <div class="form-group">
-          <div class="form-row">
-            <label for="risk" class="form-label">Risk tolerance (1–10)</label>
-            <span class="value-badge value-badge--accent" id="risk-output" aria-live="polite">5</span>
-          </div>
-          <input
-            type="range"
-            id="risk"
-            name="risk"
-            class="range-input range-input--accent"
-            min="1"
-            max="10"
-            value="5"
-            step="1"
-            aria-valuemin="1"
-            aria-valuemax="10"
-            aria-valuenow="5"
-            aria-describedby="risk-hint"
-          />
-          <div class="risk-scale" aria-hidden="true">
-            <span>Low</span><span>High</span>
-          </div>
-          <p id="risk-hint" class="field-hint">Subjective willingness to accept portfolio swings.</p>
-        </div>
-
-        <!-- Financial goal dropdown -->
-        <div class="form-group">
-          <label for="goal" class="form-label">Financial goal</label>
-          <select id="goal" name="goal" class="select-input" aria-describedby="goal-hint">
-            <option value="capital_preservation">Capital preservation</option>
-            <option value="income">Income generation</option>
-            <option value="balanced_growth" selected>Balanced growth</option>
-            <option value="growth">Growth</option>
-            <option value="aggressive_growth">Aggressive growth</option>
-          </select>
-          <p id="goal-hint" class="field-hint">Goals adjust baseline tilt before horizon and age constraints bind.</p>
-        </div>
-
-        <div class="form-actions">
-          <button type="submit" class="btn btn-primary" id="submit-btn">
-            <span class="btn-label">Build baseline allocation</span>
-          </button>
-        </div>
-      </form>
-    </section>
-
-    <section id="results" class="card results-card">
-      <div class="card-header">
-        <h2>Baseline asset allocation</h2>
-        <p class="card-lead">Risk score, category, and strategic weights update live as you adjust the questionnaire (requires opening the site via a local server for the chart module).</p>
+      <div class="techniques">
+        <h3>Techniques Demonstrated:</h3>
+        <ul>
+          <li>Semantic HTML5 for structure</li>
+          <li>CSS3 Flexbox and Grid for responsive layout</li>
+          <li>JavaScript for interactive risk assessment and portfolio calculation</li>
+          <li>Chart.js library for dynamic financial data visualization</li>
+          <li>GitHub Pages for public deployment and open-source access</li>
+        </ul>
       </div>
+    </header>
 
-      <div class="results-layout">
-        <div class="metrics-panel" id="metrics-panel" hidden>
-          <dl class="metric-list">
-            <div class="metric">
-              <dt>Risk score</dt>
-              <dd id="metric-risk-score">—</dd>
-            </div>
-            <div class="metric">
-              <dt>Category</dt>
-              <dd id="metric-category">—</dd>
-            </div>
-            <div class="metric metric--full">
-              <dt>Weights</dt>
-              <dd id="metric-weights" class="weights-text">—</dd>
-            </div>
-          </dl>
-        </div>
+    <main>
+      <section id="introduction">
+        <h2>Introduction</h2>
+        <p>
+          Robo-advisors are digital platforms that provide automated, algorithm-driven financial planning services with minimal human supervision. Our project explores how these systems translate complex risk preferences into optimized investment strategies.
+        </p>
+      </section>
+    </main>
 
-        <div class="chart-wrap">
-          <canvas id="allocation-chart" role="img" aria-label="Donut chart of baseline asset allocation"></canvas>
-          <p id="chart-placeholder" class="chart-placeholder">Submit the questionnaire to visualize your baseline mix.</p>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <p>Educational prototype — not investment advice.</p>
-  </footer>
-
-  <!-- Chart.js from CDN: loaded before our module so Chart is global -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-  <!-- Plain script: slider labels work with file://; ES modules need a local HTTP server -->
-  <script src="js/live-bindings.js" defer></script>
-  <script type="module" src="js/main.js"></script>
-</body>
+    <footer>
+      <p>CS1102 - Course Project - 2025/2026 Semester B | Team: LI Junle, XU Hongyu, YU Zening</p>
+    </footer>
+  </body>
 </html>
