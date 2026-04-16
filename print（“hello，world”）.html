@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Interactive risk profiling and baseline asset allocation — CS1102 Robo-Advisory" />
+    <title>Simulator - Robo-Advisory | CS1102</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+  </head>
+  <body class="page-simulator">
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="models.html">Models</a></li>
+        <li><a href="simulator.html" class="active">Simulator</a></li>
+        <li><a href="discovery.html">Discovery</a></li>
+        <li><a href="references.html">References</a></li>
+      </ul>
+    </nav>
+
+    <header>
+      <h1>CS1102 - Course Project - 2025/2026 Semester B</h1>
+      <h2>Portfolio Simulator: Risk Profiling &amp; Baseline Allocation</h2>
+      <div class="group-info">
+        <p><strong>Team Members:</strong> LI Junle, XU Hongyu, YU Zening</p>
+      </div>
+    </header>
+
+    <main>
+      <section id="simulator-intro">
+        <h2>How to use this tool</h2>
+        <p>
+          Adjust the questionnaire below to reflect your age, investment horizon, risk tolerance, and financial goal. The system computes a standardized risk score and a baseline strategic mix across equities, bonds, and cash. Results and the chart update live; serve this site over a local HTTP server so ES modules load correctly.
+        </p>
+      </section>
+
+      <section class="simulator-dashboard" aria-label="Risk and allocation dashboard">
+        <div id="questionnaire" class="card questionnaire-card">
+          <div class="card-header">
+            <h2>Investor questionnaire</h2>
+            <p class="card-lead">Adjust the sliders and select a goal. Values update live as you move each control.</p>
+          </div>
+
+          <form id="profile-form" class="profile-form" novalidate>
+            <div class="form-group">
+              <div class="form-row">
+                <label for="age" class="form-label">Age</label>
+                <span class="value-badge" id="age-output" aria-live="polite">35</span>
+              </div>
+              <input
+                type="range"
+                id="age"
+                name="age"
+                class="range-input"
+                min="18"
+                max="85"
+                value="35"
+                step="1"
+                aria-valuemin="18"
+                aria-valuemax="85"
+                aria-valuenow="35"
+                aria-describedby="age-hint"
+              />
+              <p id="age-hint" class="field-hint">Your current age drives capacity for volatility over the remaining life cycle.</p>
+            </div>
+
+            <div class="form-group">
+              <div class="form-row">
+                <label for="horizon" class="form-label">Investment horizon (years)</label>
+                <span class="value-badge" id="horizon-output" aria-live="polite">10</span>
+              </div>
+              <input
+                type="range"
+                id="horizon"
+                name="horizon"
+                class="range-input"
+                min="1"
+                max="40"
+                value="10"
+                step="1"
+                aria-valuemin="1"
+                aria-valuemax="40"
+                aria-valuenow="10"
+                aria-describedby="horizon-hint"
+              />
+              <p id="horizon-hint" class="field-hint">Short horizons are heavily penalized in our risk model even if stated risk tolerance is high.</p>
+            </div>
+
+            <div class="form-group">
+              <div class="form-row">
+                <label for="risk" class="form-label">Risk tolerance (1–10)</label>
+                <span class="value-badge value-badge--accent" id="risk-output" aria-live="polite">5</span>
+              </div>
+              <input
+                type="range"
+                id="risk"
+                name="risk"
+                class="range-input range-input--accent"
+                min="1"
+                max="10"
+                value="5"
+                step="1"
+                aria-valuemin="1"
+                aria-valuemax="10"
+                aria-valuenow="5"
+                aria-describedby="risk-hint"
+              />
+              <div class="risk-scale" aria-hidden="true">
+                <span>Low</span><span>High</span>
+              </div>
+              <p id="risk-hint" class="field-hint">Subjective willingness to accept portfolio swings.</p>
+            </div>
+
+            <div class="form-group">
+              <label for="goal" class="form-label">Financial goal</label>
+              <select id="goal" name="goal" class="select-input" aria-describedby="goal-hint">
+                <option value="capital_preservation">Capital preservation</option>
+                <option value="income">Income generation</option>
+                <option value="balanced_growth" selected>Balanced growth</option>
+                <option value="growth">Growth</option>
+                <option value="aggressive_growth">Aggressive growth</option>
+              </select>
+              <p id="goal-hint" class="field-hint">Goals adjust baseline tilt before horizon and age constraints bind.</p>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary" id="submit-btn">
+                <span class="btn-label">Build baseline allocation</span>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div id="results" class="card results-card">
+          <div class="card-header">
+            <h2>Baseline asset allocation</h2>
+            <p class="card-lead">Risk score, category, and strategic weights update live as you adjust the questionnaire.</p>
+          </div>
+          <section id="equal-weighting-modules" class="card">
+            <div class="card-header">
+              <h2>Equal Weighting Model</h2>
+              <p class="card-lead">Compare the risk-based model with the allocated 1/N evaluation model</p>
+            </div>
+             <div class="allocation-comparison" style="display: flex; gap: 20px; align-items: center;">
+             <div id="equal-container" style=" display: flex; flex-direction: column;
+                 width: 160px;
+                 height: 240px;
+                 border-radius: 10px;
+                 overflow: hidden;
+                 box-shadow: 0 2px 8px rgba(0,0,0,0.15);">
+                <div style="height: 33.3%; background: #3498db; display: flex; align-items: center; justify-content: center; color: black; font-size: 12px;"> Equities-33.3%</div>
+                <div style="height: 33.3%; background: #2ECC71; display: flex; align-items: center; justify-content: center; color: black; font-size: 12px;"> Bonds-33.3%</div>
+                <div style="height: 33.3%; background: #E67E22; display: flex; align-items: center; justify-content: center; color: black; font-size: 12px;"> Cash-33.3%</div>
+                </div>
+
+                <p style="margin-top: 10px; font-size: 0.9rem; color: #666;">*Unlike the profile above, this strategy ignores your risk score 
+                </p>
+          </section>
+          <div class="results-stack">
+            <div class="metrics-row">
+              <div class="metric">
+                <dt>Risk score</dt>
+                <dd id="metric-risk-score">—</dd>
+              </div>
+              <div class="metric">
+                <dt>Category</dt>
+                <dd id="metric-category">—</dd>
+              </div>
+            </div>
+
+            <div class="chart-wrap">
+              <canvas id="allocation-chart" role="img" aria-label="Horizontal bar chart of baseline asset allocation"></canvas>
+              <p id="chart-placeholder" class="chart-placeholder">Adjust inputs to visualize your baseline mix.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>CS1102 - Course Project - 2025/2026 Semester B | Educational prototype — not investment advice.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script src="js/simulator-app.js" defer></script>
+  </body>
+</html>
