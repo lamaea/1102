@@ -137,7 +137,7 @@
             <h2>Baseline asset allocation</h2>
             <p class="card-lead">Risk score, category, and strategic weights update live as you adjust the questionnaire.</p>
           </div>
-
+          
           <div class="results-stack">
             <div class="metrics-row">
               <div class="metric">
@@ -154,6 +154,22 @@
               <canvas id="allocation-chart" role="img" aria-label="Horizontal bar chart of baseline asset allocation"></canvas>
               <p id="chart-placeholder" class="chart-placeholder">Adjust inputs to visualize your baseline mix.</p>
             </div>
+            <div class="comparison-section" style="margin-top: 20px; border-top: 1px solid #ccc; padding-top: 20px;">
+    <h3>Strategy Comparison (Performance & Volatility)</h3>
+    <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+        <div class="card" style="flex: 1; min-width: 250px;">
+            <h4>Model A: Equal Weighting (1/N)</h4>
+            <p>Expected Annual Return: <span id="eq-return">--</span>%</p>
+            <p>Annual Volatility: <span id="eq-vol">--</span>%</p>
+        </div>
+        <div class="card" style="flex: 1; min-width: 250px;">
+            <h4>Model B: Risk-Based Allocation</h4>
+            <p>Expected Annual Return: <span id="rb-return">--</span>%</p>
+            <p>Annual Volatility: <span id="rb-vol">--</span>%</p>
+        </div>
+    </div>
+    <canvas id="comparison-bar-chart"></canvas>
+          </div>
           </div>
         </div>
       </section>
