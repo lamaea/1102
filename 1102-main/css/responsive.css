@@ -52,6 +52,14 @@
     gap: 0.75rem 1.25rem;
   }
 
+  .section-toc ul {
+    columns: 1;
+  }
+
+  section table {
+    font-size: 0.88rem;
+  }
+
   .metrics-row {
     flex-direction: column;
   }

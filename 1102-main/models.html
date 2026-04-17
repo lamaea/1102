@@ -27,56 +27,289 @@
     </header>
 
     <main>
-      <section>
+      <section class="section-toc">
+        <h2>Page Guide</h2>
+        <ul>
+          <li><a href="#introduction">Introduction</a></li>
+          <li><a href="#portfolio-construction">Understanding Portfolio Construction</a></li>
+          <li><a href="#our-models">Our Models</a></li>
+          <li><a href="#formula-design">Formula Design</a></li>
+          <li><a href="#historical-data">Data Used (2021-2025)</a></li>
+          <li><a href="#comparative-analysis">Comparative Analysis</a></li>
+          <li><a href="#our-discoveries">Our Discoveries</a></li>
+          <li><a href="#reference-lists">Reference Lists</a></li>
+        </ul>
+      </section>
+
+      <section id="introduction">
+        <h2>Introduction</h2>
+        <h3>Conceptual Foundation</h3>
+        <ul>
+          <li><strong>Autonomous Wealth Oversight:</strong> Leveraging digital environments to deliver financial guidance via algorithmic models, significantly reducing the necessity for human supervision [6].</li>
+          <li><strong>Strategic Translation:</strong> Converting multifaceted user preferences and risk appetites into a structured, optimized portfolio through mathematical computation [9].</li>
+          <li><strong>Market Inclusivity:</strong> A technological shift that democratizes high-level asset management by minimizing operational overhead and lowering entry thresholds for retail participants [2].</li>
+        </ul>
+
+        <h3>Primary Ambitions</h3>
+        <ul>
+          <li><strong>Mitigating Cognitive Biases:</strong> Using data-driven discipline to override impulsive human emotions, preventing irrational behaviors such as market timing or panic selling [8].</li>
+          <li><strong>Process Optimization:</strong> Enhancing the financial lifecycle by automating everything from initial profiling to continuous adjustment of asset weights [9].</li>
+        </ul>
+      </section>
+
+      <section id="portfolio-construction">
         <h2>Understanding Portfolio Construction</h2>
         <p>
-          The core engine of any robo-advisory system is its portfolio construction algorithm. These algorithms are responsible for translating a user's risk profile into a specific combination of financial assets. In this section, we compare three distinct asset allocation methodologies in terms of their return and volatility characteristics.
+          The core engine of a robo-advisory system is its portfolio construction
+          algorithm. These algorithms translate a user&apos;s risk profile into a
+          practical asset mix with measurable return and volatility targets.
         </p>
-      </section>
 
-      <section>
-        <h2>1. Equal Weighting (1/N)</h2>
+        <h3>1. Equal Weighting (1/N)</h3>
         <p>
-          The Equal Weighting strategy is the simplest form of diversification. It assigns the exact same capital allocation to every asset in the portfolio, regardless of the asset's historical performance, volatility, or correlation with other assets.
+          The Equal Weighting strategy assigns the same capital allocation to each
+          asset regardless of historical return, volatility, or correlation.
         </p>
         <ul>
-          <li><strong>Strengths:</strong> Highly intuitive, easy to implement, and requires no complex forecasting or historical data analysis.</li>
-          <li><strong>Weaknesses:</strong> It ignores the varying risk levels of different assets. For instance, an equal allocation to highly volatile stocks and stable bonds will result in an equity-dominated risk profile.</li>
+          <li><strong>Strengths:</strong> Highly intuitive, easy to implement, and requires no complex forecasting.</li>
+          <li><strong>Weaknesses:</strong> It ignores risk differences across assets and can create an equity-dominated risk profile.</li>
+        </ul>
+
+        <h3>2. Risk Parity</h3>
+        <p>
+          Unlike equal weighting, Risk Parity allocates risk rather than capital,
+          aiming for balanced volatility contribution across asset classes.
+        </p>
+        <ul>
+          <li><strong>Strengths:</strong> Delivers stronger diversification across different macro environments.</li>
+          <li><strong>Weaknesses:</strong> Often depends on leverage because more capital is allocated to lower-risk assets.</li>
+        </ul>
+
+        <h3>The Impact of Real-World Constraints</h3>
+        <ul>
+          <li><strong>Transaction Costs:</strong> Frequent trading erodes returns and requires cost-aware optimization.</li>
+          <li><strong>Rebalancing Frequency:</strong> Rebalancing must maintain target risk without creating excessive fees.</li>
+          <li><strong>Asset Availability:</strong> Retail portfolios may rely on liquid ETFs as practical proxies for less accessible assets.</li>
         </ul>
       </section>
 
-      <section>
-        <h2>2. Risk Parity</h2>
+      <section id="our-models">
+        <h2>Our Models</h2>
         <p>
-          Unlike Equal Weighting, the Risk Parity approach focuses on the allocation of <em>risk</em> rather than capital. The goal is to ensure that each asset class contributes equally to the overall volatility of the portfolio.
+          In order to objectively evaluate the effectiveness of our algorithm, we
+          conduct a comparative analysis of two asset allocation methods: Model A
+          (Equal Weighting 1/N Model) as the benchmark, and Model B (Risk-Based
+          Allocation Model) developed by our team.
+        </p>
+        <p>
+          This comparison highlights the difference between simplified heuristic
+          allocation and personalized risk-based allocation in terms of expected
+          annual returns and annual volatility.
+        </p>
+      </section>
+
+      <section id="formula-design">
+        <h2>1. Formula Design of Model A and Model B</h2>
+        <p>
+          Our model calculates expected annual return and annual volatility based on
+          historical U.S. market data, including real interest-rate indicators and
+          annual S&amp;P 500 performance.
+        </p>
+        <h3>Basic Formula</h3>
+        <p>
+          <strong>Portfolio Return</strong> = (W<sub>Equities</sub> × R<sub>Equities</sub>)
+          + (W<sub>Bonds</sub> × R<sub>Bonds</sub>) + (W<sub>Cash</sub> × R<sub>Cash</sub>)
+        </p>
+        <p>
+          <strong>Portfolio Volatility</strong> = (W<sub>Equities</sub> × V<sub>Equities</sub>)
+          + (W<sub>Bonds</sub> × V<sub>Bonds</sub>) + (W<sub>Cash</sub> × V<sub>Cash</sub>)
         </p>
         <ul>
-          <li><strong>Strengths:</strong> It provides true diversification, performing more steadily across different economic environments (e.g., inflation vs. deflation).</li>
-          <li><strong>Weaknesses:</strong> It often requires the use of leverage to achieve targeted return levels, as a significant portion of capital must be allocated to low-risk, low-return assets like government bonds.</li>
+          <li><strong>W:</strong> Asset weight in the portfolio. In Model A (1/N), W = 0.33 for each asset class.</li>
+          <li><strong>V:</strong> Asset volatility used in portfolio risk estimation.</li>
+          <li><strong>R:</strong> Asset return in the current year.</li>
         </ul>
       </section>
 
-      <section>
-        <h2>3. Simplified Mean-Variance Model</h2>
-        <p>
-          Rooted in Modern Portfolio Theory (MPT), this model seeks to identify the optimal portfolio that offers the maximum expected return for a given level of risk, forming the "Efficient Frontier."
-        </p>
+      <section id="historical-data">
+        <h2>2. Data Used (Past 5 Years: 2021-2025)</h2>
+
+        <h3>i. 10-Year U.S. Treasury Inflation-Indexed Yield (Year End)</h3>
+        <table>
+          <tr><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th></tr>
+          <tr><td>-1.04 (Dec 31)</td><td>1.58 (Dec 30)</td><td>1.72 (Dec 29)</td><td>2.24 (Dec 31)</td><td>1.93 (Dec 31)</td></tr>
+        </table>
+
+        <h3>ii. 3-Month Treasury Bill Minus Federal Funds Rate</h3>
+        <table>
+          <tr><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th></tr>
+          <tr><td>-0.02</td><td>0.16</td><td>-0.09</td><td>-0.21</td><td>-0.14</td></tr>
+        </table>
+
+        <h3>iii. S&amp;P 500 Total Returns</h3>
+        <table>
+          <tr><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th></tr>
+          <tr><td>28.71%</td><td>-18.11%</td><td>26.29%</td><td>25.02%</td><td>17.88%</td></tr>
+        </table>
+
+        <h3>iv. ICE BofA US Corporate Index Effective Yield</h3>
+        <table>
+          <tr><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th></tr>
+          <tr><td>2.35 (Dec 31)</td><td>5.48 (Dec 30)</td><td>5.14 (Dec 29)</td><td>5.35 (Dec 31)</td><td>4.84 (Dec 31)</td></tr>
+        </table>
+
+        <h3>v. CBOE Volatility Index (VIX)</h3>
+        <table>
+          <tr><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th></tr>
+          <tr><td>17.22 (Dec 31)</td><td>21.67 (Dec 30)</td><td>12.45 (Dec 29)</td><td>17.35 (Dec 31)</td><td>14.95 (Dec 31)</td></tr>
+        </table>
+
+        <h3>vi. Volatility of 3-Month Treasury Bill Minus Federal Funds Rate (Std. Dev.)</h3>
+        <table>
+          <tr><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th></tr>
+          <tr><td>0.011645</td><td>0.176867</td><td>0.085334</td><td>0.111038</td><td>0.073773</td></tr>
+        </table>
+      </section>
+
+      <section id="comparative-analysis">
+        <h2>3. Comparative Analysis of Model A and Model B</h2>
+
+        <h3>3.1 Structural Difference</h3>
         <ul>
-          <li><strong>Strengths:</strong> It mathematically optimizes the trade-off between risk and reward by factoring in the correlation between different assets.</li>
-          <li><strong>Weaknesses:</strong> It is highly sensitive to input parameters. Small errors in forecasting expected returns or covariance can lead to heavily skewed and impractical asset allocations.</li>
+          <li><strong>Model A:</strong> A stable benchmark model with equal fund distribution across assets.</li>
+          <li><strong>Model B:</strong> A risk-based model that dynamically adjusts allocation percentages using historical data and risk signals.</li>
+        </ul>
+
+        <h3>3.2 Performance Difference</h3>
+        <h4>Expected Annual Return</h4>
+        <ul>
+          <li>In strong equity years (e.g., S&amp;P 500 return of 28.71% in 2021), Model A may underperform because fixed weights limit upside participation.</li>
+          <li>Model B can identify high-return signals and adjust equity/bond/cash weights more effectively.</li>
+        </ul>
+
+        <h4>Annual Volatility</h4>
+        <ul>
+          <li>Model A cannot react to market stress due to fixed weights, which may amplify losses (e.g., S&amp;P 500 return of -18.11% in 2022).</li>
+          <li>Model B reduces risk through dynamic weight adjustment under changing market conditions.</li>
+        </ul>
+
+        <h4>Conclusion</h4>
+        <p>
+          Model B provides better downside protection than Model A during volatile
+          periods by incorporating real market indicators, such as the 10-Year
+          Treasury Inflation-Indexed yield and the CBOE Volatility Index (VIX).
+        </p>
+      </section>
+
+      <section id="our-discoveries">
+        <h2>Our Discoveries</h2>
+        <p>
+          During the development of this robo-advisory system, we extended beyond
+          implementation and examined how algorithmic models behave under real-world
+          constraints such as volatility, investor psychology, and operational cost.
+        </p>
+
+        <h3>1. The Subjectivity Gap: Risk Profiling and Reality</h3>
+        <ul>
+          <li><strong>The &quot;Ideal&quot; vs. The &quot;Human&quot;:</strong> Financial capacity and emotional tolerance can conflict, even for users with strong long-term capacity [4].</li>
+          <li><strong>The 2x Loss Aversion Law:</strong> Psychological pain from losses is approximately twice the pleasure of equivalent gains [4].</li>
+          <li><strong>Our Discovery:</strong> A horizon-only model is insufficient; manual risk-tolerance controls improve behavioral suitability.</li>
+        </ul>
+
+        <h3>2. The Rebalancing Paradox: The Cost of Perfection</h3>
+        <ul>
+          <li><strong>Optimal Frequency:</strong> More frequent rebalancing does not automatically generate better outcomes.</li>
+          <li><strong>The 0.38% Net Alpha:</strong> Trigger-based rebalancing can outperform monthly rebalancing by reducing over-trading [7].</li>
+          <li><strong>Our Discovery:</strong> Net-of-fee efficiency and controlled drift bands can reduce unnecessary tax and execution drag [5].</li>
+        </ul>
+
+        <h3>3. Transaction Costs: The Silent Profit Eroder</h3>
+        <ul>
+          <li><strong>The Price of Friction:</strong> Repeated small trades can leak value through spreads and brokerage friction [1].</li>
+          <li><strong>Compounding Effect:</strong> Minor per-trade costs can materially reduce long-term wealth outcomes [5].</li>
+          <li><strong>Our Discovery:</strong> A cost-benefit execution filter can block low-value trades and protect long-term performance.</li>
+        </ul>
+
+        <h3>4. Asset Availability: Using Liquid ETFs as Proxies</h3>
+        <ul>
+          <li><strong>The Institutional Barrier:</strong> Many alternative assets remain inaccessible to retail investors due to minimum size and illiquidity [3].</li>
+          <li><strong>The Proxy Solution:</strong> Factor-mimicking ETFs can provide practical exposure to otherwise inaccessible themes.</li>
+          <li><strong>Our Discovery:</strong> Liquid proxies support institutional-style diversification while preserving tradability and portfolio flexibility.</li>
         </ul>
       </section>
 
-      <section>
-        <h2>The Impact of Real-World Constraints</h2>
-        <p>
-          While theoretical models perform flawlessly in simulations, robo-advisory systems must account for practical market frictions. We examine how real-world constraints affect strategy outcomes:
-        </p>
-        <ul>
-          <li><strong>Transaction Costs:</strong> Frequent buying and selling erode portfolio returns. Algorithms must balance the need for optimal allocation with the costs of trading.</li>
-          <li><strong>Rebalancing Frequency:</strong> Markets drift daily. Robo-advisors must determine optimal rebalancing schedules (e.g., time-based or threshold-based) to maintain the target risk profile without incurring excessive fees.</li>
-          <li><strong>Asset Availability:</strong> Retail investors often face limitations in acquiring certain institutional-grade assets or derivatives, requiring robo-advisors to construct proxy portfolios using highly liquid ETFs.</li>
-        </ul>
+      <section id="reference-lists">
+        <h2>Reference Lists</h2>
+        <ol>
+          <li>
+            Barber, B. M., &amp; Odean, T. (2000). Trading is hazardous to your wealth:
+            The common stock investment performance of individual investors.
+            <em>The Journal of Finance, 55(2)</em>, 773-806.
+            <a href="https://doi.org/10.1111/0022-1082.00226">https://doi.org/10.1111/0022-1082.00226</a>
+          </li>
+          <li>
+            Cardillo, G., &amp; Chiappini, H. (2024). Robo-advisors: A systematic
+            literature review. <em>Finance Research Letters, 62</em>.
+          </li>
+          <li>
+            BlackRock. (2023). ETF landscape: The evolution of liquid alternatives
+            for retail portfolios. BlackRock Investment Institute.
+          </li>
+          <li>
+            Kahneman, D., &amp; Tversky, A. (1979). Prospect theory: An analysis of
+            decision under risk. <em>Econometrica, 47(2)</em>, 263-291.
+            <a href="https://doi.org/10.2307/1914185">https://doi.org/10.2307/1914185</a>
+          </li>
+          <li>
+            Kinniry, F. M., Jr., Jaconetti, C. M., DiJoseph, M. A., Zilbering, Y.,
+            &amp; Bennyhoff, D. G. (2022). Vanguard Advisor&apos;s Alpha. Vanguard
+            Research.
+          </li>
+          <li>
+            KPMG. (2024). The race for robo advice: Building trust and accelerating
+            growth. KPMG International.
+          </li>
+          <li>
+            Morgan Stanley. (2024). The rebalancing act: Strategies for a volatile
+            market. Morgan Stanley Wealth Management.
+          </li>
+          <li>
+            Onabowale, A. (2025). The rise of AI and robo-advisors. ResearchGate.
+          </li>
+          <li>
+            Srivastava, T., et al. (2025). Leaders in the digital age: A systematic
+            review of robo-advisors. <em>International Journal of Research and
+            Scientific Innovation, 12(10)</em>.
+          </li>
+          <li>
+            Board of Governors of the Federal Reserve System (US), Market Yield on
+            U.S. Treasury Securities at 10-Year Constant Maturity, Quoted on an
+            Investment Basis, Inflation-Indexed [DFII10], retrieved from FRED,
+            Federal Reserve Bank of St. Louis:
+            <a href="https://fred.stlouisfed.org/series/DFII10">https://fred.stlouisfed.org/series/DFII10</a>
+          </li>
+          <li>
+            Federal Reserve Bank of St. Louis, 3-Month Treasury Bill Minus Federal
+            Funds Rate [TB3SMFFM], retrieved from FRED, Federal Reserve Bank of St.
+            Louis:
+            <a href="https://fred.stlouisfed.org/series/TB3SMFFM">https://fred.stlouisfed.org/series/TB3SMFFM</a>
+          </li>
+          <li>
+            Slickcharts. (n.d.). S&amp;P 500 total returns by year. Retrieved April
+            16, 2026, from
+            <a href="https://www.slickcharts.com/sp500/returns">https://www.slickcharts.com/sp500/returns</a>
+          </li>
+          <li>
+            Ice Data Indices, LLC, ICE BofA US Corporate Index Effective Yield
+            [BAMLC0A0CMEY], retrieved from FRED, Federal Reserve Bank of St. Louis:
+            <a href="https://fred.stlouisfed.org/series/BAMLC0A0CMEY">https://fred.stlouisfed.org/series/BAMLC0A0CMEY</a>
+          </li>
+          <li>
+            Chicago Board Options Exchange, CBOE Volatility Index: VIX [VIXCLS],
+            retrieved from FRED, Federal Reserve Bank of St. Louis:
+            <a href="https://fred.stlouisfed.org/series/VIXCLS">https://fred.stlouisfed.org/series/VIXCLS</a>
+          </li>
+        </ol>
       </section>
     </main>
 

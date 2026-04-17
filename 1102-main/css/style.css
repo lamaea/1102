@@ -175,6 +175,52 @@ section strong {
   color: var(--primary-color);
 }
 
+.section-toc ul {
+  columns: 2;
+  column-gap: 2rem;
+  padding-left: 1.2rem;
+}
+
+.section-toc li {
+  break-inside: avoid;
+}
+
+.section-toc a {
+  text-decoration: none;
+}
+
+.section-toc a:hover {
+  text-decoration: underline;
+}
+
+section table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0 24px;
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  overflow: hidden;
+  font-size: 0.95rem;
+}
+
+section th,
+section td {
+  border: 1px solid var(--border-light);
+  padding: 10px 12px;
+  text-align: center;
+}
+
+section th {
+  background: #e2e8f0;
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+section tr:nth-child(even) td {
+  background: #f8fafc;
+}
+
 main a {
   color: var(--accent-color);
   font-weight: 600;
