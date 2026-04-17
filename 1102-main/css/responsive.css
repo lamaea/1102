@@ -60,6 +60,10 @@
     font-size: 0.88rem;
   }
 
+  .comparison-cards {
+    grid-template-columns: 1fr;
+  }
+
   .metrics-row {
     flex-direction: column;
   }

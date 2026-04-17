@@ -35,6 +35,24 @@
         </p>
       </section>
 
+      <section id="risk-score-method">
+        <h2>Risk score methodology</h2>
+        <p>
+          The risk score is computed on a 0-100 scale from risk tolerance, goal,
+          horizon, and age.
+        </p>
+        <ul>
+          <li><strong>Tolerance:</strong> <code>((riskTolerance - 1) / 9) × 100</code></li>
+          <li><strong>Goal prior:</strong> preservation -18, income -10, balanced 0, growth +10, aggressive +18</li>
+          <li><strong>Horizon penalty:</strong> <code>-35 × e^(-horizon / 6)</code></li>
+          <li><strong>Age tilt:</strong> <code>8 × sin(((age - 18) / 67) × pi) - 2</code></li>
+        </ul>
+        <p><code>behavioral = tolerance + goalPrior</code></p>
+        <p><code>rawScore = 0.35 × behavioral + 0.45 × (behavioral + horizonPenalty) + 0.15 × (behavioral + ageTilt) + 0.05 × (50 + ageTilt)</code></p>
+        <p><code>riskScore = round(clamp(rawScore, 0, 100))</code></p>
+        <p><strong>Category:</strong> Conservative (&lt;40), Moderate (40-64), Aggressive (&gt;=65).</p>
+      </section>
+
       <section class="simulator-dashboard" aria-label="Risk and allocation dashboard">
         <div id="questionnaire" class="card questionnaire-card">
           <div class="card-header">
@@ -154,24 +172,24 @@
               <canvas id="allocation-chart" role="img" aria-label="Horizontal bar chart of baseline asset allocation"></canvas>
               <p id="chart-placeholder" class="chart-placeholder">Adjust inputs to visualize your baseline mix.</p>
             </div>
-            <div class="comparison-section" style="margin-top: 20px; border-top: 1px solid #ccc; padding-top: 20px;">
-    <h3>Strategy Comparison (Performance & Volatility)</h3>
-    <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-        <div class="card" style="flex: 1; min-width: 250px;">
-            <h4>Model A: Equal Weighting (1/N)</h4>
-            <p>Expected Annual Return: <span id="eq-return">--</span>%</p>
-            <p>Annual Volatility: <span id="eq-vol">--</span>%</p>
-        </div>
-        <div class="card" style="flex: 1; min-width: 250px;">
-            <h4>Model B: Risk-Based Allocation</h4>
-            <p>Expected Annual Return: <span id="rb-return">--</span>%</p>
-            <p>Annual Volatility: <span id="rb-vol">--</span>%</p>
-        </div>
-    </div>
-    <div style="position: relative; min-height: 280px; margin-top: 12px;">
-      <canvas id="comparison-bar-chart"></canvas>
-    </div>
-          </div>
+            <div class="comparison-section">
+              <h3>Strategy Comparison (Performance &amp; Volatility)</h3>
+              <div class="comparison-cards">
+                <div class="comparison-card">
+                  <h4>Model A: Equal Weighting (1/N)</h4>
+                  <p>Expected Annual Return: <span id="eq-return">--</span>%</p>
+                  <p>Annual Volatility: <span id="eq-vol">--</span>%</p>
+                </div>
+                <div class="comparison-card">
+                  <h4>Model B: Risk-Based Allocation</h4>
+                  <p>Expected Annual Return: <span id="rb-return">--</span>%</p>
+                  <p>Annual Volatility: <span id="rb-vol">--</span>%</p>
+                </div>
+              </div>
+              <div class="comparison-chart-wrap">
+                <canvas id="comparison-bar-chart"></canvas>
+              </div>
+            </div>
           </div>
         </div>
       </section>

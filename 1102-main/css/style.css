@@ -523,3 +523,55 @@ main section:hover {
 .chart-wrap.has-chart .chart-placeholder {
   display: none;
 }
+
+.comparison-section {
+  margin-top: 20px;
+  border-top: 1px solid var(--border-light);
+  padding-top: 20px;
+}
+
+.comparison-section h3 {
+  margin: 0 0 12px;
+  font-size: 1.15rem;
+  text-align: left;
+}
+
+.comparison-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.comparison-card {
+  background: var(--sim-elevated);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.1rem;
+}
+
+.comparison-card h4 {
+  margin: 0 0 0.6rem;
+  font-family: "Merriweather", serif;
+  font-size: 1rem;
+  color: var(--primary-color);
+  text-align: left;
+}
+
+.comparison-card p {
+  margin: 0.25rem 0;
+  font-size: 0.95rem;
+  text-align: left;
+}
+
+.comparison-chart-wrap {
+  position: relative;
+  min-height: 280px;
+  margin-top: 12px;
+}
+
+#risk-score-method code {
+  overflow-x: auto;
+  white-space: nowrap;
+  display: inline-block;
+  max-width: 100%;
+}
