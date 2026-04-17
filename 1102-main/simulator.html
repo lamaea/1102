@@ -125,7 +125,7 @@
             </div>
 
             <div class="form-actions">
-              <button type="submit" class="btn btn-primary" id="submit-btn">
+              <button type="button" class="btn btn-primary" id="submit-btn">
                 <span class="btn-label">Build baseline allocation</span>
               </button>
             </div>
@@ -137,26 +137,7 @@
             <h2>Baseline asset allocation</h2>
             <p class="card-lead">Risk score, category, and strategic weights update live as you adjust the questionnaire.</p>
           </div>
-          <section id="equal-weighting-modules" class="card">
-            <div class="card-header">
-              <h2>Equal Weighting Model</h2>
-              <p class="card-lead">Compare the risk-based model with the allocated 1/N evaluation model</p>
-            </div>
-             <div class="allocation-comparison" style="display: flex; gap: 20px; align-items: center;">
-             <div id="equal-container" style=" display: flex; flex-direction: column;
-                 width: 160px;
-                 height: 240px;
-                 border-radius: 10px;
-                 overflow: hidden;
-                 box-shadow: 0 2px 8px rgba(0,0,0,0.15);">
-                <div style="height: 33.3%; background: #3498db; display: flex; align-items: center; justify-content: center; color: black; font-size: 12px;"> Equities-33.3%</div>
-                <div style="height: 33.3%; background: #2ECC71; display: flex; align-items: center; justify-content: center; color: black; font-size: 12px;"> Bonds-33.3%</div>
-                <div style="height: 33.3%; background: #E67E22; display: flex; align-items: center; justify-content: center; color: black; font-size: 12px;"> Cash-33.3%</div>
-                </div>
-
-                <p style="margin-top: 10px; font-size: 0.9rem; color: #666;">*Unlike the profile above, this strategy ignores your risk score 
-                </p>
-          </section>
+          
           <div class="results-stack">
             <div class="metrics-row">
               <div class="metric">
@@ -173,6 +154,24 @@
               <canvas id="allocation-chart" role="img" aria-label="Horizontal bar chart of baseline asset allocation"></canvas>
               <p id="chart-placeholder" class="chart-placeholder">Adjust inputs to visualize your baseline mix.</p>
             </div>
+            <div class="comparison-section" style="margin-top: 20px; border-top: 1px solid #ccc; padding-top: 20px;">
+    <h3>Strategy Comparison (Performance & Volatility)</h3>
+    <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+        <div class="card" style="flex: 1; min-width: 250px;">
+            <h4>Model A: Equal Weighting (1/N)</h4>
+            <p>Expected Annual Return: <span id="eq-return">--</span>%</p>
+            <p>Annual Volatility: <span id="eq-vol">--</span>%</p>
+        </div>
+        <div class="card" style="flex: 1; min-width: 250px;">
+            <h4>Model B: Risk-Based Allocation</h4>
+            <p>Expected Annual Return: <span id="rb-return">--</span>%</p>
+            <p>Annual Volatility: <span id="rb-vol">--</span>%</p>
+        </div>
+    </div>
+    <div style="position: relative; min-height: 280px; margin-top: 12px;">
+      <canvas id="comparison-bar-chart"></canvas>
+    </div>
+          </div>
           </div>
         </div>
       </section>

@@ -7,7 +7,10 @@
 (function () {
   /** @type {Chart | null} */
   let chart = null;
-
+  // --- INSERT START ---
+  /** @type {Chart | null} */
+  let comparisonChart = null; 
+  // --- INSERT END ---
   function clamp(value, min, max) {
     return Math.max(min, Math.min(max, value));
   }
@@ -124,7 +127,85 @@
   function getAllocation(riskScore, horizon) {
     return applyHorizonFloor(allocationFromScore(riskScore), horizon);
   }
+  // ---------- EQUAL WEIGHTING ANALYSIS (Your Part) ----------
+  const ASSET_PERFORMANCE = {
+    equities: { return: 0.10, vol: 0.18 },
+    bonds:    { return: 0.04, vol: 0.05 },
+    cash:     { return: 0.02, vol: 0.01 }
+  };
 
+  function calculateStats(alloc) {
+    const r = (alloc.equities * ASSET_PERFORMANCE.equities.return +
+               alloc.bonds * ASSET_PERFORMANCE.bonds.return +
+               alloc.cash * ASSET_PERFORMANCE.cash.return) * 100;
+    
+    const v = (alloc.equities * ASSET_PERFORMANCE.equities.vol +
+               alloc.bonds * ASSET_PERFORMANCE.bonds.vol +
+               alloc.cash * ASSET_PERFORMANCE.cash.vol) * 100;
+    
+    return { returnPct: r.toFixed(2), volPct: v.toFixed(2) };
+  }
+
+  function renderComparison(riskModelAlloc) {
+    const eqAlloc = { equities: 1/3, bonds: 1/3, cash: 1/3 };
+    const eqStats = calculateStats(eqAlloc);
+    const rbStats = calculateStats(riskModelAlloc);
+
+    const update = (id, val) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = val;
+    };
+
+    update('eq-return', eqStats.returnPct);
+    update('eq-vol', eqStats.volPct);
+    update('rb-return', rbStats.returnPct);
+    update('rb-vol', rbStats.volPct);
+
+    renderComparisonChart(eqStats, rbStats);
+  }
+
+  function renderComparisonChart(eq, rb) {
+    const canvas = document.getElementById("comparison-bar-chart");
+    if (!canvas || typeof Chart === "undefined") return;
+
+    const chartData = {
+      labels: ['Expected Return (%)', 'Annual Volatility (%)'],
+      datasets: [
+        {
+          label: 'Equal Weighting (1/N)',
+          data: [eq.returnPct, eq.volPct],
+          backgroundColor: '#4A90E2',
+          borderRadius: 4
+        },
+        {
+          label: 'Risk-Based Model (Team)',
+          data: [rb.returnPct, rb.volPct],
+          backgroundColor: '#1e293b',
+          borderRadius: 4
+        }
+      ]
+    };
+
+    if (comparisonChart) {
+      comparisonChart.data = chartData;
+      comparisonChart.update('none');
+    } else {
+      comparisonChart = new Chart(canvas, {
+        type: 'bar',
+        data: chartData,
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom' }
+          },
+          scales: {
+            y: { beginAtZero: true, ticks: { callback: v => v + '%' } }
+          }
+        }
+      });
+    }
+  }
   function pct(n) {
     return `${(n * 100).toFixed(1)}%`;
   }
@@ -249,14 +330,15 @@
     const allocation = getAllocation(riskScore, profile.investmentHorizonYears);
     renderMetrics(riskScore, category);
     renderChart(allocation);
+    renderComparison(allocation);
   }
 
   function init() {
     const form = document.getElementById("profile-form");
     if (!(form instanceof HTMLFormElement)) return;
 
-    // Absolute protection: never let browser do real submit navigation.
-    form.setAttribute("action", "javascript:void(0)");
+    // Prevent browser navigation caused by form submission.
+    form.setAttribute("action", "#");
     form.setAttribute("method", "post");
 
     syncSliderOutput(form, "age", "age-output");
@@ -268,6 +350,14 @@
       event.stopPropagation();
       run(form);
     });
+
+    const submitBtn = document.getElementById("submit-btn");
+    if (submitBtn) {
+      submitBtn.addEventListener("click", function (event) {
+        event.preventDefault();
+        run(form);
+      });
+    }
 
     form.addEventListener("input", function () {
       run(form);
