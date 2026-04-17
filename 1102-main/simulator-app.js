@@ -130,7 +130,11 @@
   // ---------- EQUAL WEIGHTING ANALYSIS (Your Part) ----------
   const ASSET_PERFORMANCE = {
     equities: { return: 0.16, vol: 0.17 },
+<<<<<<< HEAD
     bonds:    { return: 0.012, vol: 0.20 },
+=======
+    bonds:    { return: 0.012, vol: 0.05 },
+>>>>>>> 8ba24a3b5e673768dad297726d244308a146c535
     cash:     { return: 0.0008, vol: 0.09 }
   };
 
