@@ -28,17 +28,48 @@
 
     <main>
       <section>
-        <h2>Research directions</h2>
+        <h2>Our Discoveries</h2>
         <p>
-          This section is reserved for extended analysis: comparing robo-advisory platforms, regulatory considerations (e.g. suitability and disclosure), and extensions such as ESG preferences or tax-aware allocation. Content can be expanded as the project evolves.
+          During the development of this robo-advisory system, we extended beyond
+          implementation and examined how algorithmic models behave under real-world
+          constraints such as volatility, investor psychology, and operational cost.
         </p>
       </section>
 
       <section>
-        <h2>Observations</h2>
-        <p>
-          Automated advice scales well to retail investors but must balance simplicity with transparency. Users benefit from clear explanations of how inputs map to portfolio weights—an area our <a href="simulator.html">Simulator</a> demonstrates at a baseline level.
-        </p>
+        <h2>1. The Subjectivity Gap: Risk Profiling and Reality</h2>
+        <ul>
+          <li><strong>The &quot;Ideal&quot; vs. The &quot;Human&quot;:</strong> Financial capacity and emotional tolerance can conflict, even for users with strong long-term capacity [4].</li>
+          <li><strong>The 2x Loss Aversion Law:</strong> Psychological pain from losses is approximately twice the pleasure of equivalent gains [4].</li>
+          <li><strong>Our Discovery:</strong> A horizon-only model is insufficient; manual risk-tolerance controls improve behavioral suitability.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>2. The Rebalancing Paradox: The Cost of Perfection</h2>
+        <ul>
+          <li><strong>Optimal Frequency:</strong> More frequent rebalancing does not automatically generate better outcomes.</li>
+          <li><strong>The 0.38% Net Alpha:</strong> Trigger-based rebalancing can outperform monthly rebalancing by reducing over-trading [7].</li>
+          <li><strong>Our Discovery:</strong> Net-of-fee efficiency and controlled drift bands can reduce unnecessary tax and execution drag [5].</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>3. Transaction Costs: The Silent Profit Eroder</h2>
+        <ul>
+          <li><strong>The Price of Friction:</strong> Repeated small trades can leak value through spreads and brokerage friction [1].</li>
+          <li><strong>Compounding Effect:</strong> Minor per-trade costs can materially reduce long-term wealth outcomes [5].</li>
+          <li><strong>Our Discovery:</strong> A cost-benefit execution filter can block low-value trades and protect long-term performance.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>4. Asset Availability: Using Liquid ETFs as Proxies</h2>
+        <ul>
+          <li><strong>The Institutional Barrier:</strong> Many alternative assets remain inaccessible to retail investors due to minimum size and illiquidity [3].</li>
+          <li><strong>The Proxy Solution:</strong> Factor-mimicking ETFs can provide practical exposure to otherwise inaccessible themes.</li>
+          <li><strong>Our Discovery:</strong> Liquid proxies support institutional-style diversification while preserving tradability and portfolio flexibility.</li>
+        </ul>
       </section>
     </main>
 

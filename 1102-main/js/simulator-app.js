@@ -129,9 +129,9 @@
   }
   // ---------- EQUAL WEIGHTING ANALYSIS (Your Part) ----------
   const ASSET_PERFORMANCE = {
-    equities: { return: 0.10, vol: 0.18 },
-    bonds:    { return: 0.04, vol: 0.05 },
-    cash:     { return: 0.02, vol: 0.01 }
+    equities: { return: 0.16, vol: 0.17 },
+    bonds:    { return: 0.012, vol: 0.20 },
+    cash:     { return: 0.0008, vol: 0.09 }
   };
 
   function calculateStats(alloc) {
