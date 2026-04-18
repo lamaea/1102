@@ -44,51 +44,71 @@
       <section id="portfolio-construction">
         <h2>Understanding Portfolio Construction</h2>
         <p>
-          The core engine of a robo-advisory system is its portfolio construction
-          algorithm. These algorithms translate a user&apos;s risk profile into a
-          practical asset mix with measurable return and volatility targets.
+          A robo-advisory system is driven by a portfolio construction algorithm. These
+          algorithms transform the risk profile of a user to a feasible asset combination with
+          quantifiable return and volatility objectives.
         </p>
 
         <h3>1. Equal Weighting (1/N)</h3>
-        <p>
-          The Equal Weighting strategy assigns the same capital allocation to each
-          asset regardless of historical return, volatility, or correlation.
-        </p>
-        <ul>
-          <li><strong>Strengths:</strong> Highly intuitive, easy to implement, and requires no complex forecasting.</li>
-          <li><strong>Weaknesses:</strong> It ignores risk differences across assets and can create an equity-dominated risk profile.</li>
+        <ul class="introduction-bullet-list">
+          <li>
+            ● Equal Weighting strategy allocates equal amounts of capital to every asset
+            irrespective of past performance, volatility, or correlation.
+          </li>
+          <li>
+            ● Strengths: Intuitive, simple to apply and does not necessitate elaborate
+            forecasting.
+          </li>
+          <li>
+            ● Weaknesses: It does not account for risk variations among assets, and may
+            result in an equity-dominated risk profile.
+          </li>
         </ul>
 
         <h3>2. Risk Parity</h3>
-        <p>
-          Unlike equal weighting, Risk Parity allocates risk rather than capital,
-          aiming for balanced volatility contribution across asset classes.
-        </p>
-        <ul>
-          <li><strong>Strengths:</strong> Delivers stronger diversification across different macro environments.</li>
-          <li><strong>Weaknesses:</strong> Often depends on leverage because more capital is allocated to lower-risk assets.</li>
+        <ul class="introduction-bullet-list">
+          <li>
+            ● Risk Parity, unlike equal weighting, does not distribute capital but risk to
+            achieve balanced contribution to volatility across asset classes.
+          </li>
+          <li>
+            ● Strengths: Provides greater diversification in various macro environments.
+          </li>
+          <li>
+            ● Weaknesses: Tends to rely on leverage due to the higher allocation of capital in
+            the assets with lower risk.
+          </li>
         </ul>
 
-        <h3>The Impact of Real-World Constraints</h3>
-        <ul>
-          <li><strong>Transaction Costs:</strong> Frequent trading erodes returns and requires cost-aware optimization.</li>
-          <li><strong>Rebalancing Frequency:</strong> Rebalancing must maintain target risk without creating excessive fees.</li>
-          <li><strong>Asset Availability:</strong> Retail portfolios may rely on liquid ETFs as practical proxies for less accessible assets.</li>
+        <h3>The Influence of Real-world Constraints.</h3>
+        <ul class="introduction-bullet-list">
+          <li>
+            ● Transaction Costs: Frequent trading eliminates returns and must be optimized
+            cost-consciously.
+          </li>
+          <li>
+            ● Rebalancing Frequency: Rebalancing should not add on too much fees as it
+            aims to maintain target risk.
+          </li>
+          <li>
+            ● Asset Availability: Retail portfolios can use liquid ETFs as convenient proxies
+            to less liquid assets.
+          </li>
         </ul>
       </section>
 
       <section id="our-models">
         <h2>Our Models</h2>
-        <p>
-          Our Models
-          ● In order to objectively evaluate the effectiveness of our algorithm, we conduct
-          a comparative analysis of two asset allocation methods: Model A (Equal
-          Weighting 1/N Model) as the benchmark, and Model B (Risk-Based
-          Allocation Model) developed by our team.
-          ● This comparison highlights the difference between simplified heuristic
-          allocation and personalized risk-based allocation in terms of expected annual
-          returns and annual volatility
-        </p>
+        <ul class="introduction-bullet-list">
+          <li>
+            ● In order to objectively evaluate the effectiveness of this algorithm, we have
+            conducted a comparative analysis of two different asset allocation methods:
+            Equal Weighting 1/N Model as a benchmark, and the Risk-Based Allocation
+            Model developed by us. This comparison aims to reveal the fundamental
+            differences between simplified heuristic methods and personalized, risk-based
+            strategies in terms of Expected Annual Returns and Annual Volatility.
+          </li>
+        </ul>
       </section>
 
       <section id="formula-design">
@@ -174,12 +194,12 @@
         <h4>Annual Volatility.</h4>
         <ul>
           <li>Model A cannot adjust when the market is bad due to the fixed weight, which may lead to losses (such as the S&amp;P 500 return of -18.11% in 2022).</li>
-          <li>Model B's weight adjustment can effectively reduce the risk.</li>
+          <li>Model B&apos;s weight adjustment can effectively reduce the risk.</li>
         </ul>
 
         <h4>Conclusion</h4>
         <ul>
-          <li>Model B has better downward protection than Model A when the market fluctuates violently (such as the stock market fell by 18.11% in 2022) by reflecting "real data" (such as the Treasury Securities at 10-Year Constant Maturity and CBOE Volatility Index).</li>
+          <li>Model B has better downward protection than Model A when the market fluctuates violently (such as the stock market fell by 18.11% in 2022) by reflecting &quot;real data&quot; (such as the Treasury Securities at 10-Year Constant Maturity and CBOE Volatility Index).</li>
         </ul>
       </section>
 
